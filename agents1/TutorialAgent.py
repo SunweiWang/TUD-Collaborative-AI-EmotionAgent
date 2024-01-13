@@ -133,7 +133,7 @@ class TutorialAgent(ArtificialBrain):
         while True:           
             # The first phases are all introduction messages explaining the task, environment, etc.
             if Phase.INTRO0==self._phase:
-                self._sendMessage('Hello! My name is RescueBot. During this task we will collaborate with each other to search and rescue the victims at the drop zone on our right. \
+                self._sendMessage('Bot_Neutral \n Hello! My name is RescueBot. During this task we will collaborate with each other to search and rescue the victims at the drop zone on our right. \
                 For this tutorial there are 4 victims and 3 injury types, during the official task there will be 8 victims to rescue. \
                 The red color refers to critically injured victims (critically injured girl and critically injured elderly woman), yellow to mildly injured victims (mildly injured boy and mildly injured elderly man), and green to healthy victims. \
                 Healthy victims do not need to be rescued. Furthermore, the environment will contain different obstacle types with varying removal times. \
@@ -147,10 +147,11 @@ class TutorialAgent(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO1==self._phase:
-                self._sendMessage('Lets try out the controls first. You can move with the arrow keys. If you move down twice, you will notice that you can now no longer see me. \
+                self._sendMessage('Bot_Neutral \n Lets try out the controls first. You can move with the arrow keys. If you move down twice, you will notice that you can now no longer see me. \
                 So you can only see as far as 2 grid cells. Therefore, it is important to search the areas well. If you moved down twice, press the "Continue" button.','RescueBot')
                 if self.received_messages_content and self.received_messages_content[-1]=='Continue':
-                    self._phase=Phase.INTRO2
+                    self._phase=Phase.INTRO7
+                    # self._phase=Phase.INTRO2
                     self.received_messages_content=[]
                     self.received_messages=[]
                 else:
@@ -216,7 +217,7 @@ class TutorialAgent(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO7==self._phase:
-                self._sendMessage('Lets move to area 4 next. Remember to inform me about this. \
+                self._sendMessage('Bot_Neutral \n Lets move to area 4 next. Remember to inform me about this. \
                 If you are in front of area 4, you see that it is blocked by tree. \
                 In this tutorial, let me remove tree for you. To do so, inform me that you need help with removing by using the button "Help remove" and selecting "at 04". \
                 I will then come over to remove tree for you.','RescueBot')
@@ -228,7 +229,7 @@ class TutorialAgent(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO8==self._phase:
-                self._sendMessage('In area 4 you will find mildly injured elderly man. If you find victims, it is recommended to inform me about this. \
+                self._sendMessage('Bot_Neutral \n In area 4 you will find mildly injured elderly man. If you find victims, it is recommended to inform me about this. \
                 You can do this using the buttons below "I have found:" and selecting "mildly injured elderly man in 04". \
                 In this tutorial, I will let you carry mildly injured elderly man alone. \
                 If you decide to rescue victims, it is recommended to inform me about it. \
@@ -245,7 +246,7 @@ class TutorialAgent(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO9==self._phase:
-                self._sendMessage('Nice job! Finally, lets move to area 8 now. Remember to inform me about this. \
+                self._sendMessage('Bot_Neutral \n Nice job! Finally, lets move to area 8 now. Remember to inform me about this. \
                 If you are in front of area 8, you see that it is blocked by stones. \
                 In this tutorial, I will let you remove stones alone. \
                 You can remove stones by pressing "E" on your keyboard. Now, you will see a small busy icon untill stones is successfully removed. \
@@ -259,7 +260,7 @@ class TutorialAgent(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO10==self._phase:
-                self._sendMessage('This concludes the tutorial! You can now notify the experimenter to start the official task.','RescueBot')
+                self._sendMessage('Bot_Neutral \n This concludes the tutorial! You can now notify the experimenter to start the official task.','RescueBot')
                 if self.received_messages_content and self.received_messages_content[-1]=='Found: critically injured girl in 5':
                     self._phase=Phase.FIND_NEXT_GOAL
                     self.received_messages_content=[]

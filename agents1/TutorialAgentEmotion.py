@@ -150,7 +150,7 @@ class TutorialAgentEmotion(ArtificialBrain):
                 self._sendMessage('Bot_Neutral \n Lets try out the controls first. You can move with the arrow keys. If you move down twice, you will notice that you can now no longer see me. \
                 So you can only see as far as 2 grid cells. Therefore, it is important to search the areas well. If you moved down twice, press the "Continue" button.','RescueBot')
                 if self.received_messages_content and self.received_messages_content[-1]=='Continue':
-                    self._phase=Phase.INTRO2
+                    self._phase=Phase.INTRO7
                     self.received_messages_content=[]
                     self.received_messages=[]
                 else:
@@ -168,7 +168,7 @@ class TutorialAgentEmotion(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO3==self._phase:
-                self._sendMessage('If you search area 3, you will find one of the victims to rescue: critically injured elderly woman. \n Bot_Worried I am worried!  \
+                self._sendMessage('Bot_Neutral \n If you search area 3, you will find one of the victims to rescue: critically injured elderly woman. \n Bot_Worried I am worried!  \
                 \n In this tutorial, let us carry critically injured elderly woman together. To do so, inform me that you found this victim by using the buttons below "I have found:" and selecting "critically injured elderly woman in 03". \
                 If you found critically injured elderly woman and informed me about it, press the "Continue" button. I will then come over to help.','RescueBot')
                 if self.received_messages_content and self.received_messages_content[-1]=='Continue':
@@ -179,7 +179,7 @@ class TutorialAgentEmotion(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO4==self._phase:
-                self._sendMessage('Let us carry ' + self._goalVic + ' together. To do this, move yourself on top, above, or next to ' + self._goalVic + '. \
+                self._sendMessage('Bot_Neutral \n Let us carry ' + self._goalVic + ' together. To do this, move yourself on top, above, or next to ' + self._goalVic + '. \
                 Now, press "A" on your keyboard (all keyboard controls can be found at the top of the world). \
                 Transport ' + self._goalVic + ' to the drop zone and move yourself on top of the image of '+ self._goalVic + '. \
                 Next, press "S" on your keyboard to drop '+ self._goalVic + '. \
@@ -192,7 +192,7 @@ class TutorialAgentEmotion(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO5==self._phase:
-                self._sendMessage('Nice job! Lets move to area 5 next. Remember to inform me about this. \
+                self._sendMessage('Bot_Neutral \n Nice job! Lets move to area 5 next. Remember to inform me about this. \
                 If you are in front of area 5, you see that it is blocked by rock. This is one of the three obstacle types. \
                 In this tutorial, let us remove rock together because executing actions jointly is faster than executing them alone. \
                 To remove rock together, inform me that you found this obstacle by using the button "Help remove" and selecting "at 05". \
@@ -205,7 +205,7 @@ class TutorialAgentEmotion(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO6==self._phase:
-                self._sendMessage('Let us remove rock together. To do so, remain in front of rock and press "D" on your keyboard. \
+                self._sendMessage('Bot_Neutral \n Let us remove rock together. To do so, remain in front of rock and press "D" on your keyboard. \
                 Now, you will see a small busy icon untill rock is successfully removed. If the entrance is cleared, press the "Continue" button.','RescueBot')
                 if self.received_messages_content and self.received_messages_content[-1]=='Continue':
                     # self._phase=Phase.INTRO7
@@ -216,7 +216,7 @@ class TutorialAgentEmotion(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO7==self._phase:
-                self._sendMessage('Lets move to area 4 next. Remember to inform me about this. \
+                self._sendMessage('Bot_Neutral \n Lets move to area 4 next. Remember to inform me about this. \
                 If you are in front of area 4, you see that it is blocked by tree. \
                 In this tutorial, let me remove tree for you. To do so, inform me that you need help with removing by using the button "Help remove" and selecting "at 04". \
                 I will then come over to remove tree for you.','RescueBot')
@@ -228,7 +228,8 @@ class TutorialAgentEmotion(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO8==self._phase:
-                self._sendMessage('In area 4 you will find mildly injured elderly man. If you find victims, it is recommended to inform me about this. \
+                self._sendMessage('Bot_Neutral \n In area 4 you will find mildly injured elderly man. \n Bot_Worried I am worried! \
+                If you find victims, it is recommended to inform me about this. \
                 You can do this using the buttons below "I have found:" and selecting "mildly injured elderly man in 04". \
                 In this tutorial, I will let you carry mildly injured elderly man alone. \
                 If you decide to rescue victims, it is recommended to inform me about it. \
@@ -245,7 +246,7 @@ class TutorialAgentEmotion(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO9==self._phase:
-                self._sendMessage('Nice job! Finally, lets move to area 8 now. Remember to inform me about this. \
+                self._sendMessage('Bot_Neutral \n Nice job! \n Bot_Neutral I am happy! Finally, lets move to area 8 now. Remember to inform me about this. \
                 If you are in front of area 8, you see that it is blocked by stones. \
                 In this tutorial, I will let you remove stones alone. \
                 You can remove stones by pressing "E" on your keyboard. Now, you will see a small busy icon untill stones is successfully removed. \
@@ -259,7 +260,7 @@ class TutorialAgentEmotion(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO10==self._phase:
-                self._sendMessage('This concludes the tutorial! You can now notify the experimenter to start the official task.','RescueBot')
+                self._sendMessage('Bot_Neutral \n This concludes the tutorial! You can now notify the experimenter to start the official task.','RescueBot')
                 if self.received_messages_content and self.received_messages_content[-1]=='Found: critically injured girl in 5':
                     self._phase=Phase.FIND_NEXT_GOAL
                     self.received_messages_content=[]
