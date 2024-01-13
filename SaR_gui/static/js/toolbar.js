@@ -445,6 +445,10 @@ function add_message(chatroom_ID, mssg) {
     document.getElementById("messages").innerHTML = mssg_content;
     div.appendChild(document.createTextNode(mssg_content));
     */
+
+    mssg_content = mssg_content.replaceAll("Bot_Neutral", "<img src='/static/images/neutral.gif' height= 70 width=70/>");
+    mssg_content = mssg_content.replaceAll("Bot_Worried", "<img src='/static/images/worried.gif' height= 70 width=70/>");
+
     
     mssg_content = mssg_content.replaceAll("safe", "<img src='/static/images/safe.svg' height= 30 width=30/>");
     mssg_content = mssg_content.replaceAll("afstand", "<img src='/static/images/distance.svg' height= 30 width=30/>");

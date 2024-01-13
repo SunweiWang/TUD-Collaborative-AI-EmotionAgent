@@ -136,7 +136,7 @@ class TutorialAgent(ArtificialBrain):
         while True:           
             # The first phases are all introduction messages explaining the task, environment, etc.
             if Phase.INTRO0==self._phase:
-                self._sendMessage('Hello! My name is RescueBot. During this task we will collaborate with each other to search and rescue the victims at the drop zone on our right. \
+                self._sendMessage('Bot_Neutral \n Hello! My name is RescueBot. During this task we will collaborate with each other to search and rescue the victims at the drop zone on our right. \
                 For this tutorial there are 4 victims and 3 injury types, during the official task there will be 8 victims to rescue. \
                 The red color refers to critically injured victims, yellow to mildly injured victims, and green to healthy victims. Healthy victims do not need to be rescued. \
                 The 8 victims are a girl (critically injured girl/mildly injured girl/healthy girl), boy (critically injured boy/mildly injured boy/healthy boy), \
@@ -154,7 +154,7 @@ class TutorialAgent(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO1==self._phase:
-                self._sendMessage('Lets try out the controls first. You can move with the arrow keys. If you move down twice, you will notice that you can now no longer see me. \
+                self._sendMessage('Bot_Neutral \n Lets try out the controls first. You can move with the arrow keys. If you move down twice, you will notice that you can now no longer see me. \
                 So you can only see as far as 2 grid cells. Therefore, it is important to search the areas well. If you moved down twice, press the "Continue" button.','RescueBot')
                 if self.received_messages_content and self.received_messages_content[-1]=='Continue':
                     self._phase=Phase.INTRO2
@@ -164,7 +164,7 @@ class TutorialAgent(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO2==self._phase:
-                self._sendMessage('Lets move to area 3 now. When you are going to search an area, it is recommended to inform me about this.  \
+                self._sendMessage('Bot_Neutral \n Lets move to area 3 now. When you are going to search an area, it is recommended to inform me about this.  \
                 You can do this using the button "03". This way, we can collaborate more efficiently. \
                 If you pressed the button "03" and moved to the area entrance, press the "Continue" button.', 'RescueBot')
                 if self.received_messages_content and self.received_messages_content[-1]=='Continue':
@@ -176,7 +176,7 @@ class TutorialAgent(ArtificialBrain):
 
             if Phase.INTRO3==self._phase:
                 self._sendMessage('If you search area 3, you will find one of the victims to rescue: critically injured elderly woman. \
-                There will be 3 different versions of the official task, manipulating your capabilities and resulting in different interdependence relationships between us. \
+                Bot_Worried \n There will be 3 different versions of the official task, manipulating your capabilities and resulting in different interdependence relationships between us. \
                 However, in all conditions the critically injured victims have to be carried together. \
                 So, let us carry critically injured elderly woman together! To do so, inform me that you found this victim by using the buttons below "I have found:" and selecting "critically injured elderly woman in 03". \
                 If you found critically injured elderly woman and informed me about it, press the "Continue" button. I will then come over to help.','RescueBot')
