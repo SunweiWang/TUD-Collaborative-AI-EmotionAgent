@@ -137,7 +137,7 @@ class OfficialAgent(ArtificialBrain):
         while True:
             if Phase.INTRO == self._phase:
                 # Send introduction message
-                self._sendMessage('Hello there, this is RescueBot again! Together we will collaborate during this task and try to search and rescue as many of the 8 victims on our right as possible. \
+                self._sendMessage('Bot_Neutral \n Hello there, this is RescueBot again! Together we will collaborate during this task and try to search and rescue as many of the 8 victims on our right as possible. \
                 Each critical victim (critically injured girl/critically injured elderly woman/critically injured man/critically injured dog) adds 6 points to our score, \
                 each mild victim (mildly injured boy/mildly injured elderly man/mildly injured woman/mildly injured cat) 3 points. We will have 5 minutes for our mission. \
                 If you are ready to begin our mission, you can simply start moving.', 'RescueBot')

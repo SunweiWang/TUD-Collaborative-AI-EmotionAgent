@@ -483,8 +483,8 @@ function add_message(chatroom_ID, mssg) {
     mssg_content = mssg_content.replaceAll("\n","<br>");
 
     // mssg_content = mssg_content.replaceAll("RescueBotEmotion_Neutral", "<img src='/static/images/neutral.svg' height= 30 width=30/>");
-    mssg_content = mssg_content.replaceAll("RescueBotEmotion_Neutral", "<img src='/static/images/neutral.gif' height= 70 width=70/>");
-    mssg_content = mssg_content.replaceAll("RescueBotEmotion_Worried", "<img src='/static/images/worried.gif' height= 70 width=70/>");
+    mssg_content = mssg_content.replaceAll("Bot_Neutral", "<img src='/static/images/neutral.gif' height= 70 width=70/>");
+    mssg_content = mssg_content.replaceAll("Bot_Worried", "<img src='/static/images/worried.gif' height= 70 width=70/>");
 
     mssg_content = mssg_content.replaceAll("healthy girl", "<img src='/static/images/healthy%20girl.svg' height= 30 width=30/>");
     mssg_content = mssg_content.replaceAll("healthy boy", "<img src='/static/images/healthy%20boy.svg' height= 30 width=30/>");

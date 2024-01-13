@@ -81,7 +81,8 @@ def add_agents(builder, task_type, condition):
                 brain = OfficialAgent(slowdown=8, condition=condition) # Slowdown makes the agent a bit slower, do not change value during evaluations
                 brain2 = ObjectAddingAgent(slowdown=1, condition=condition)
                 loc = (22,11)
-                builder.add_agent(loc, brain, team=team_name, name="RescueBot",customizable_properties = ['score'], score=0, sense_capability=sense_capability_agent, is_traversable=True, img_name="/images/robot-final4.svg")
+                # builder.add_agent(loc, brain, team=team_name, name="RescueBot",customizable_properties = ['score'], score=0, sense_capability=sense_capability_agent, is_traversable=True, img_name="/images/robot-final4.svg")
+                builder.add_agent(loc, brain, team=team_name, name="RescueBot",customizable_properties = ['score'], score=0, sense_capability=sense_capability_agent, is_traversable=True, img_name="/images/neutral_background.gif")
                 builder.add_agent((22,10), brain2, team=team_name, name="ObjectAdder", customizable_properties = ['score'], score=0, sense_capability=sense_capability_agent, is_traversable=True, visualize_shape=1, visualize_opacity=0)
 
             if task_type=="tutorial":
