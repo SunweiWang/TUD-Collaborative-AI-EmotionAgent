@@ -24,7 +24,8 @@ import matrx.defaults as defaults
 
 # addons
 from matrx.api import api
-from matrx_visualizer import visualization_server
+from SaR_gui import visualization_server
+# from matrx_visualizer import visualization_server
 
 
 class WorldBuilder:

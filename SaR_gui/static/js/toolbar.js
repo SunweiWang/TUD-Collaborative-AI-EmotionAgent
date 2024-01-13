@@ -481,6 +481,11 @@ function add_message(chatroom_ID, mssg) {
     mssg_content = mssg_content.replaceAll("['",""); 
     mssg_content = mssg_content.replaceAll("']",""); 
     mssg_content = mssg_content.replaceAll("\n","<br>");
+
+    // mssg_content = mssg_content.replaceAll("RescueBotEmotion_Neutral", "<img src='/static/images/neutral.svg' height= 30 width=30/>");
+    mssg_content = mssg_content.replaceAll("RescueBotEmotion_Neutral", "<img src='/static/images/neutral.gif' height= 70 width=70/>");
+    mssg_content = mssg_content.replaceAll("RescueBotEmotion_Worried", "<img src='/static/images/worried.gif' height= 70 width=70/>");
+
     mssg_content = mssg_content.replaceAll("healthy girl", "<img src='/static/images/healthy%20girl.svg' height= 30 width=30/>");
     mssg_content = mssg_content.replaceAll("healthy boy", "<img src='/static/images/healthy%20boy.svg' height= 30 width=30/>");
     mssg_content = mssg_content.replaceAll("healthy man", "<img src='/static/images/healthy%20man.svg' height= 30 width=30/>");
@@ -548,15 +553,16 @@ function add_message(chatroom_ID, mssg) {
 
     if (mssg_content.includes("Current tick is")) {
         var tick = Number(mssg_content.split(/[, ]+/).pop());
-        if (tick == 4800) {
+        // The tick stop after 5min 10 seconds
+        if (tick == 3100) {
             toggle_stop();
     }}
 
-    if (mssg_content.includes("Current tick is")) {
-        var tick = Number(mssg_content.split(/[, ]+/).pop());
-        if (tick == 1100 || tick == 2000 || tick == 2900) { 
-            toggle_pause();
-    }}
+    // if (mssg_content.includes("Current tick is")) {
+    //     var tick = Number(mssg_content.split(/[, ]+/).pop());
+    //     if (tick == 1100 || tick == 2000 || tick == 2900) {
+    //         toggle_pause();
+    // }}
 
     var div = document.createElement("div");
     div.className = "message_you"; // by default assume we sent this message
@@ -569,6 +575,7 @@ function add_message(chatroom_ID, mssg) {
         // console.log("adding sender");
         var mssg_sender = document.createElement('span');
         mssg_sender.className = "chat-mssg-sender";
+        // mssg_sender.appendChild(document.createElement(img_name="/images/mildly injured elderly man.svg"));
         mssg_sender.appendChild(document.createTextNode(mssg.from_id + ": "));
         div.appendChild(mssg_sender);
     }

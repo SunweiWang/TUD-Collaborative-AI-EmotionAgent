@@ -232,29 +232,30 @@ class HumanBrain(HumanAgentBrain):
                 (16, 21), (20, 20), (20, 21), (21, 20), (21, 21), (22, 20), (22, 21), (23, 8), (23, 9), (23, 10), (23, 11), (23, 12), (23, 13), (23, 14), (23, 15),
                 (3, 4), (9, 4), (15, 4), (21, 4), (3, 7), (9, 7), (15, 7), (3, 16), (9, 16), (15, 16), (3, 19), (9, 19), (15, 19), (21, 19)]
 
-        if self.__condition != 'tutorial':
-            if self._tick == 950 or self._tick == 1850 or self._tick == 2750:
-                self.image = self.agent_properties["img_name"]
+        # if self.__condition != 'tutorial' or 'official':
+            # if self._tick == 950 or self._tick == 1850 or self._tick == 2750:
+            #     self.image = self.agent_properties["img_name"]
+            #
+            # if state[{"name": 'human'}]['location'] in area_tiles and self._tick > 950 and self._tick < 1050 or state[{"name": 'human'}]['location'] in area_tiles and self._tick > 1850 and self._tick < 1950 or state[{"name": 'human'}]['location'] in area_tiles and self._tick > 2750 and self._tick < 2850:
+            #     self.image = self.agent_properties["img_name"]
 
-            if state[{"name": 'human'}]['location'] in area_tiles and self._tick > 950 and self._tick < 1050 or state[{"name": 'human'}]['location'] in area_tiles and self._tick > 1850 and self._tick < 1950 or state[{"name": 'human'}]['location'] in area_tiles and self._tick > 2750 and self._tick < 2850:
-                self.image = self.agent_properties["img_name"]
-
-            if state[{"name": 'human'}]['location'] not in area_tiles and self._tick > 950 and self._tick < 1050 or state[{"name": 'human'}]['location'] not in area_tiles and self._tick > 1850 and self._tick < 1950 or state[{"name": 'human'}]['location'] not in area_tiles and self._tick > 2750 and self._tick < 2850:
-                self.agent_properties["img_name"] = "/images/human-danger2.gif"
-                self.agent_properties["visualize_size"] = 2
-                return None, {}
-        
-            if self._tick == 1050:
-                self.agent_properties["img_name"] = str(self.image)
-                self.agent_properties["visualize_size"] = 1
-        
-            if self._tick == 1950:
-                self.agent_properties["img_name"] = str(self.image)
-                self.agent_properties["visualize_size"] = 1
-        
-            if self._tick == 2850:
-                self.agent_properties["img_name"] = str(self.image)
-                self.agent_properties["visualize_size"] = 1
+            # Remove Storm with penalty
+            # if state[{"name": 'human'}]['location'] not in area_tiles and self._tick > 950 and self._tick < 1050 or state[{"name": 'human'}]['location'] not in area_tiles and self._tick > 1850 and self._tick < 1950 or state[{"name": 'human'}]['location'] not in area_tiles and self._tick > 2750 and self._tick < 2850:
+            #     self.agent_properties["img_name"] = "/images/human-danger2.gif"
+            #     self.agent_properties["visualize_size"] = 2
+            #     return None, {}
+            #
+            # if self._tick == 1050:
+            #     self.agent_properties["img_name"] = str(self.image)
+            #     self.agent_properties["visualize_size"] = 1
+            #
+            # if self._tick == 1950:
+            #     self.agent_properties["img_name"] = str(self.image)
+            #     self.agent_properties["visualize_size"] = 1
+            #
+            # if self._tick == 2850:
+            #     self.agent_properties["img_name"] = str(self.image)
+            #     self.agent_properties["visualize_size"] = 1
 
         # if no keys were pressed, do nothing
         if user_input is None or user_input == []:

@@ -208,8 +208,7 @@ class TutorialAgent(ArtificialBrain):
                 self._sendMessage('Let us remove rock together. To do so, remain in front of rock and press "D" on your keyboard. \
                 Now, you will see a small busy icon untill rock is successfully removed. If the entrance is cleared, press the "Continue" button.','RescueBot')
                 if self.received_messages_content and self.received_messages_content[-1]=='Continue':
-                    # self._phase=Phase.INTRO7
-                    self._phase=Phase.INTRO10
+                    self._phase=Phase.INTRO7
                     self.received_messages_content=[]
                     self.received_messages=[]
                 else:

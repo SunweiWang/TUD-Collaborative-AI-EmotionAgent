@@ -110,8 +110,7 @@ def create_builder(task_type, condition):
     # Create the world builder
     if task_type=="official":
         # Create the collection goal
-        goal = CollectionGoal(max_nr_ticks=3100)
-        # 3000 = 300 seconds = 5 min, it used to be 5000 = 500 seconds = 8 min
+        goal = CollectionGoal(max_nr_ticks=5000)
         builder = WorldBuilder(shape=[25,24], tick_duration=tick_duration, run_matrx_api=True, run_matrx_visualizer=False, verbose=verbose, simulation_goal=goal, visualization_bg_clr='#9a9083')
     else:
         # Create the collection goal
@@ -280,19 +279,17 @@ def create_builder(task_type, condition):
                     (7,7),(7,8),(7,9),(7,10),(8,10),(9,10),(10,10),(11,10),(11,9),(11,8),(11,7),(10,7),(8,7)]:
             builder.add_object(loc,'roof', EnvObject,is_traversable=True, is_movable=False, visualize_shape='img',img_name="/images/roof-final5.svg")
 
+        for loc in [(6,1),(6,2),(6,3),(6,4),(6,5),(6,12),(6,13),(6,14),(6,15),(6,16),(6,17),(11,12),(11,11),(18,12),(18,21),
+                    (3,12),(3,11),(12,6),(12,7),(12,8),(12,9),(12,10),(12,11),(18,11),(18,10),(18,9),(19,9),(19,8),(18,22),
+                    (18,13),(18,14),(18,15),(18,16),(18,17),(9,17),(9,18),(20,17),(20,18),(12,1),(12,2),(6,22),(18,20),
+                    (19,7),(19,6),(19,5),(10,6),(10,5),(14,17),(14,18),(12,19),(12,20),(12,21),(12,18),(12,22)]:
+            builder.add_object(loc,'water',EnvObject,is_traversable=True, is_movable=False, visualize_shape='img',img_name="/images/pool20.svg")
 
-     # Remove water pool function in the map
-        # for loc in [(6,1),(6,2),(6,3),(6,4),(6,5),(6,12),(6,13),(6,14),(6,15),(6,16),(6,17),(11,12),(11,11),(18,12),(18,21),
-        #             (3,12),(3,11),(12,6),(12,7),(12,8),(12,9),(12,10),(12,11),(18,11),(18,10),(18,9),(19,9),(19,8),(18,22),
-        #             (18,13),(18,14),(18,15),(18,16),(18,17),(9,17),(9,18),(20,17),(20,18),(12,1),(12,2),(6,22),(18,20),
-        #             (19,7),(19,6),(19,5),(10,6),(10,5),(14,17),(14,18),(12,19),(12,20),(12,21),(12,18),(12,22)]:
-        #     builder.add_object(loc,'water',EnvObject,is_traversable=True, is_movable=False, visualize_shape='img',img_name="/images/pool20.svg")
-        #
-        # for loc in [(1,11),(2,11),(3,11),(3,12),(4,12),(5,12),(6,12),(7,12),(8,12),(9,12),(10,12),(11,12),(12,11),(13,11),(20,17),
-        #             (14,11),(15,11),(16,11),(17,11),(18,11),(6,17),(7,17),(8,17),(9,17),(9,18),(5,17),(4,17),(3,17),(2,17),(1,17),
-        #             (18,9),(19,9),(19,5),(20,5),(21,5),(22,5),(23,5),(11,6),(12,6),(10,6),(10,5),(9,5),(8,5),(7,5),(6,5),(19,17),
-        #             (11,11),(18,17),(17,17),(16,17),(15,17),(14,17),(14,18),(13,18),(12,18),(10,18),(11,18)]:
-        #     builder.add_object(loc,'water', EnvObject,is_traversable=True, is_movable=False, visualize_shape='img', img_name="/images/lake2.svg")
+        for loc in [(1,11),(2,11),(3,11),(3,12),(4,12),(5,12),(6,12),(7,12),(8,12),(9,12),(10,12),(11,12),(12,11),(13,11),(20,17),
+                    (14,11),(15,11),(16,11),(17,11),(18,11),(6,17),(7,17),(8,17),(9,17),(9,18),(5,17),(4,17),(3,17),(2,17),(1,17),
+                    (18,9),(19,9),(19,5),(20,5),(21,5),(22,5),(23,5),(11,6),(12,6),(10,6),(10,5),(9,5),(8,5),(7,5),(6,5),(19,17),
+                    (11,11),(18,17),(17,17),(16,17),(15,17),(14,17),(14,18),(13,18),(12,18),(10,18),(11,18)]:
+            builder.add_object(loc,'water', EnvObject,is_traversable=True, is_movable=False, visualize_shape='img', img_name="/images/lake2.svg")
 
         for loc in [(12,3),(12,4),(18,1),(18,2),(18,3),(18,4),(6,19),(6,20),(6,21),(18,19)]:
             builder.add_object(loc,'plant',EnvObject,is_traversable=True,is_movable=False,visualize_shape='img',img_name="/images/tree.svg", visualize_size=1.25) 
@@ -345,25 +342,25 @@ class CollectionGoal(WorldGoal):
         self.__progress = 0
         self.__score = 0
         self.__penalties = []
-
+    
     def score(self, grid_world):
-        # if 1000 in self.__penalties and 1900 in self.__penalties and 2800 in self.__penalties:
-        #     penalty=30
-        # if 1000 in self.__penalties and 1900 in self.__penalties and 2800 not in self.__penalties:
-        #     penalty=20
-        # if 1000 not in self.__penalties and 1900 in self.__penalties and 2800 in self.__penalties:
-        #     penalty=20
-        # if 1000 in self.__penalties and 1900 not in self.__penalties and 2800 in self.__penalties:
-        #     penalty=20
-        # if 1000 in self.__penalties and 1900 not in self.__penalties and 2800 not in self.__penalties:
-        #     penalty=10
-        # if 1000 not in self.__penalties and 1900 not in self.__penalties and 2800 in self.__penalties:
-        #     penalty=10
-        # if 1000 not in self.__penalties and 1900 in self.__penalties and 2800 not in self.__penalties:
-        #     penalty=10
-        # if 1000 not in self.__penalties and 1900 not in self.__penalties and 2800 not in self.__penalties:
-        #     penalty = 0
-        return self.__score - 0
+        if 1000 in self.__penalties and 1900 in self.__penalties and 2800 in self.__penalties:
+            penalty=30
+        if 1000 in self.__penalties and 1900 in self.__penalties and 2800 not in self.__penalties:
+            penalty=20
+        if 1000 not in self.__penalties and 1900 in self.__penalties and 2800 in self.__penalties:
+            penalty=20
+        if 1000 in self.__penalties and 1900 not in self.__penalties and 2800 in self.__penalties:
+            penalty=20
+        if 1000 in self.__penalties and 1900 not in self.__penalties and 2800 not in self.__penalties:
+            penalty=10
+        if 1000 not in self.__penalties and 1900 not in self.__penalties and 2800 in self.__penalties:
+            penalty=10
+        if 1000 not in self.__penalties and 1900 in self.__penalties and 2800 not in self.__penalties:
+            penalty=10
+        if 1000 not in self.__penalties and 1900 not in self.__penalties and 2800 not in self.__penalties:
+            penalty = 0
+        return self.__score - penalty
 
     def goal_reached(self, grid_world):
         if grid_world.current_nr_ticks >= self.max_nr_ticks:
@@ -488,28 +485,28 @@ class CollectionGoal(WorldGoal):
         if 'objectadder' in grid_world.registered_agents.keys():
             agent2 = grid_world.registered_agents['objectadder']
         human = grid_world.registered_agents['human']
-        # if human.properties['img_name'] == "/images/human-danger2.gif" and curr_tick not in self.__penalties:
-        #     self.__penalties.append(curr_tick)
+        if human.properties['img_name'] == "/images/human-danger2.gif" and curr_tick not in self.__penalties:
+            self.__penalties.append(curr_tick)
         
-        # if 1000 in self.__penalties and 1900 in self.__penalties and 2800 in self.__penalties:
-        #     penalty=30
-        # if 1000 in self.__penalties and 1900 in self.__penalties and 2800 not in self.__penalties:
-        #     penalty=20
-        # if 1000 not in self.__penalties and 1900 in self.__penalties and 2800 in self.__penalties:
-        #     penalty=20
-        # if 1000 in self.__penalties and 1900 not in self.__penalties and 2800 in self.__penalties:
-        #     penalty=20
-        # if 1000 in self.__penalties and 1900 not in self.__penalties and 2800 not in self.__penalties:
-        #     penalty=10
-        # if 1000 not in self.__penalties and 1900 not in self.__penalties and 2800 in self.__penalties:
-        #     penalty=10
-        # if 1000 not in self.__penalties and 1900 in self.__penalties and 2800 not in self.__penalties:
-        #     penalty=10
-        # if 1000 not in self.__penalties and 1900 not in self.__penalties and 2800 not in self.__penalties:
-        #     penalty = 0
+        if 1000 in self.__penalties and 1900 in self.__penalties and 2800 in self.__penalties:
+            penalty=30
+        if 1000 in self.__penalties and 1900 in self.__penalties and 2800 not in self.__penalties:
+            penalty=20
+        if 1000 not in self.__penalties and 1900 in self.__penalties and 2800 in self.__penalties:
+            penalty=20
+        if 1000 in self.__penalties and 1900 not in self.__penalties and 2800 in self.__penalties:
+            penalty=20
+        if 1000 in self.__penalties and 1900 not in self.__penalties and 2800 not in self.__penalties:
+            penalty=10
+        if 1000 not in self.__penalties and 1900 not in self.__penalties and 2800 in self.__penalties:
+            penalty=10
+        if 1000 not in self.__penalties and 1900 in self.__penalties and 2800 not in self.__penalties:
+            penalty=10
+        if 1000 not in self.__penalties and 1900 not in self.__penalties and 2800 not in self.__penalties:
+            penalty = 0
 
-        agent.change_property('score',self.__score)
+        agent.change_property('score',self.__score - penalty)
         if agent2:
-            agent2.change_property('score',self.__score)
+            agent2.change_property('score',self.__score - penalty)
 
         return is_satisfied, progress

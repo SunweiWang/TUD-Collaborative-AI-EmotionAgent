@@ -214,9 +214,13 @@ class Drop(Action):
         """ Drops the carried object."""
         reg_ag = grid_world.registered_agents[agent_id]
         if 'human' in agent_id and len(reg_ag.is_carrying)<2:
-            reg_ag.change_property("img_name", "/images/rescue-man-final3.svg")
+            # reg_ag.change_property("img_name", "/images/rescue-man-final3.svg")
+            # reg_ag.change_property("img_name", "/images/human_female_smile_background.gif")
+            reg_ag.change_property("img_name", "/images/human_agent_background.gif")
+
         if 'bot' in agent_id:
-            reg_ag.change_property("img_name", "/images/robot-final4.svg")
+            # reg_ag.change_property("img_name", "/images/robot-final4.svg")
+            reg_ag.change_property("img_name", "/images/neutral_background.gif")
 
         # fetch range from kwargs
         drop_range = 1 if 'drop_range' not in kwargs else kwargs['drop_range']
@@ -378,7 +382,9 @@ class DropObjectTogether(Action):
         other_agent.change_property("visualize_opacity", 1)
 
         # change the agent image back to default 
-        agent.change_property("img_name", "/images/rescue-man-final3.svg")
+        # agent.change_property("img_name", "/images/rescue-man-final3.svg")
+        # agent.change_property("img_name", "/images/human_female_smile_background.gif")
+        agent.change_property("img_name", "/images/human_agent_background.gif")
 
         # check that it is even possible to drop this object somewhere
         if not env_obj.is_traversable and not reg_ag.is_traversable and drop_range == 0:
