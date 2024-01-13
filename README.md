@@ -2,6 +2,25 @@
 This is the repository for the interdependence and trust assignments of the course on Collaborative AI at the TU Delft. The repository uses the [MATRX software package](https://matrx-software.com/) to create a simulated search and rescue task in a two-dimensional grid environment. The environment consists of multiple areas, injured victims, and obstacles blocking area entrances. One artificial agent (called RescueBot) and one human agent need to rescue these victims and deliver them to a drop off zone, while communicating and collaborating with each other.
 
 ![environment-chat-1](https://user-images.githubusercontent.com/54837051/204800699-89ed7159-d329-4f95-8441-acb601ff90a5.png)
+
+## Installation
+Download or clone this repository and the required dependencies listed in the 'requirements.txt' file. We recommend the use of Python 3.8 or 3.9, and to create a virtual environment for this project. You can use the following step by step installation steps after cloning or downloading this repository:
+- Install an IDE such as PyCharm(https://www.jetbrains.com/pycharm/download/?section=windows) or Visual Studio Code(https://code.visualstudio.com/download)
+- Download Python 3.9.13(https://www.python.org/downloads/release/python-3913/) 
+- Download Git (https://git-scm.com/download/win)
+- Go to the folder that you want to place the project in, using Git Bash: `git clone https://github.com/SunweiWang/TUD-Collaborative-AI-EmotionAgent.git`
+- Then open the project inside the IDE, and open the terminal.
+
+- Install the required dependencies through 'pip install -r requirements.txt'. 
+- Launch the human-agent teamwork task by running main.py.
+- You will be asked to enter which task type to run: 
+  - 'tutorial' will launch a step by step tutorial of the task in a simplified and smaller world, aimed at getting you familiar with the environment, controls, and messaging system. We highly recommend you to start with this tutorial.
+  - 'official' will launch the complete task. Next, you will be asked to enter a name or id for the human agent that you will control. Finally, you will be asked to enter one of the human capability conditions 'normal', 'strong', or 'weak'. 
+- Go to http://localhost:3000 and clear your old cache of the page by pressing 'ctrl' + 'F5'.
+- Open the 'God' and human agent view. Start the task in the 'God' view with the play icon in the top right of the toolbar. The 'God' view is shown in the image above, cannot be used to control agents, and should only be used for debugging purposes. 
+- Go to the human agent view to start the task. Open the messaging interface by pressing the chat box icon in the top right of the toolbar. You can now start playing the task.
+
+
 ## Task
 The objective of the task is to find eight target victims in the different areas and carry them to the drop zone. Rescuing mildly injured victims (yellow color) adds three points to the total score, rescuing critically injured victims (red color) adds six points to the total score. The world terminates after successfully rescuing all target victims, the corresponding output logs will then be saved in the 'logs' folder. We created three human capability conditions: strong, weak, and normal. These capabilities result in different interdependence relationships between RescueBot and the human agent. Below we list the common and unique capabilities for each of these conditions.
 #### Common capabilities across all conditions
@@ -25,16 +44,7 @@ The objective of the task is to find eight target victims in the different areas
 - The normal human can remove the small brown stone alone, but doing this together with RescueBot is much faster.
 - The normal human can rescue mildly injured victims alone.
 - The normal human can carry only one victim at the same time.
-## Installation
-Download or clone this repository and the required dependencies listed in the 'requirements.txt' file. We recommend the use of Python 3.8 or 3.9, and to create a virtual environment for this project. You can use the following step by step installation steps after cloning or downloading this repository:
-- Install the required dependencies through 'pip install -r requirements.txt'. 
-- Launch the human-agent teamwork task by running main.py.
-- You will be asked to enter which task type to run: 
-  - 'tutorial' will launch a step by step tutorial of the task in a simplified and smaller world, aimed at getting you familiar with the environment, controls, and messaging system. We highly recommend you to start with this tutorial.
-  - 'official' will launch the complete task. Next, you will be asked to enter a name or id for the human agent that you will control. Finally, you will be asked to enter one of the human capability conditions 'normal', 'strong', or 'weak'. 
-- Go to http://localhost:3000 and clear your old cache of the page by pressing 'ctrl' + 'F5'.
-- Open the 'God' and human agent view. Start the task in the 'God' view with the play icon in the top right of the toolbar. The 'God' view is shown in the image above, cannot be used to control agents, and should only be used for debugging purposes. 
-- Go to the human agent view to start the task. Open the messaging interface by pressing the chat box icon in the top right of the toolbar. You can now start playing the task.
+
 ## Overview
 Below we discuss the content and files of the important folders in more detail. For the assignments, the only implemantation modifactions should be made to the 'agents1' and optionally the 'brains1' and 'worlds1' folders.
 - 'actions1': Contains the 'CustomActions.py' file defining the various customized actions like 'CarryObjectTogether' and 'DropObjectTogether'.
