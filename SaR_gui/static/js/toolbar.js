@@ -553,8 +553,8 @@ function add_message(chatroom_ID, mssg) {
 
     if (mssg_content.includes("Current tick is")) {
         var tick = Number(mssg_content.split(/[, ]+/).pop());
-        // The tick stop after 5min 10 seconds
-        if (tick == 3100) {
+        // The tick stop after 5min 5 seconds
+        if (tick == 3050) {
             toggle_stop();
     }}
 
