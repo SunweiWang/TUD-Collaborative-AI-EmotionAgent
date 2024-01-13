@@ -1,5 +1,6 @@
 import os, requests
 import sys
+# sys.path.append('D:\Thesis\CSE3000-2023-trust-repair')
 import csv
 import glob
 import pathlib
@@ -12,11 +13,13 @@ if __name__ == "__main__":
     fld = os.getcwd()
     print("\nEnter one of the task types 'tutorial' or 'official':")
     choice1=input()
+    print("\nEnter the assigned group number '1' or '2':")
+    choiceGroup=input()
     if choice1=='tutorial':
-        builder = create_builder(task_type='tutorial', condition='tutorial')
+        builder = create_builder(task_type='tutorial', condition='tutorial', group=choiceGroup)
     else:
         # ADD QUESTION ON CONDITION HERE
-        builder = create_builder(task_type='official', condition='baseline')
+        builder = create_builder(task_type='official', condition='baseline', group=choiceGroup)
 
     # Start overarching MATRX scripts and threads, such as the api and/or visualizer if requested. Here we also link our own media resource folder with MATRX.
     media_folder = pathlib.Path().resolve()

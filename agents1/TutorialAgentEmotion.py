@@ -45,7 +45,7 @@ class Phase(enum.Enum):
     REMOVE_OBSTACLE_IF_NEEDED=28,
     ENTER_ROOM=29
     
-class TutorialAgent(ArtificialBrain):
+class TutorialAgentEmotion(ArtificialBrain):
     def __init__(self, slowdown, condition):
         super().__init__(slowdown, condition)
         # Initialization of some relevant variables
