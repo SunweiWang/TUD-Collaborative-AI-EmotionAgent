@@ -133,7 +133,7 @@ class TutorialAgentEmotion(ArtificialBrain):
         while True:           
             # The first phases are all introduction messages explaining the task, environment, etc.
             if Phase.INTRO0==self._phase:
-                self._sendMessage('Bot_Neutral \n Hello! My name is RescueBot. During this task we will collaborate with each other to search and rescue the victims at the drop zone on our right. \
+                self._sendMessage('Bot_Neutral \n Hello! My name is RescueBot. This is tutorial for Group A. During this task we will collaborate with each other to search and rescue the victims at the drop zone on our right. \
                 For this tutorial there are 4 victims and 3 injury types, during the official task there will be 8 victims to rescue. \
                 The red color refers to critically injured victims (critically injured girl and critically injured elderly woman), yellow to mildly injured victims (mildly injured boy and mildly injured elderly man), and green to healthy victims. \
                 Healthy victims do not need to be rescued. Furthermore, the environment will contain different obstacle types with varying removal times. \
@@ -219,7 +219,7 @@ class TutorialAgentEmotion(ArtificialBrain):
                 self._sendMessage('Bot_Neutral \n Lets move to area 4 next. Remember to inform me about this. \
                 If you are in front of area 4, you see that it is blocked by tree. \
                 In this tutorial, let me remove tree for you. To do so, inform me that you need help with removing by using the button "Help remove" and selecting "at 04". \
-                I will then come over to remove tree for you.','RescueBot')
+                I will then come over to remove tree for you. Please wait for me','RescueBot')
                 if self.received_messages_content and self.received_messages_content[-1]=='Continue':
                     self._phase=Phase.INTRO8
                     self.received_messages_content=[]
@@ -246,7 +246,7 @@ class TutorialAgentEmotion(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO9==self._phase:
-                self._sendMessage('Bot_Neutral \n Nice job! \n Bot_Neutral I am happy! Finally, lets move to area 8 now. Remember to inform me about this. \
+                self._sendMessage('Bot_Neutral \n Nice job! \n Bot_Happy I am happy! Finally, lets move to area 8 now. Remember to inform me about this. \
                 If you are in front of area 8, you see that it is blocked by stones. \
                 In this tutorial, I will let you remove stones alone. \
                 You can remove stones by pressing "E" on your keyboard. Now, you will see a small busy icon untill stones is successfully removed. \
@@ -260,7 +260,7 @@ class TutorialAgentEmotion(ArtificialBrain):
                     return None,{}
 
             if Phase.INTRO10==self._phase:
-                self._sendMessage('Bot_Neutral \n This concludes the tutorial! You can now notify the experimenter to start the official task.','RescueBot')
+                self._sendMessage('Bot_Neutral \n Well Done! Let us work together in the official task! \n Bot_Excited I am excited! This concludes the tutorial! You can now notify the experimenter to start the official task.','RescueBot')
                 if self.received_messages_content and self.received_messages_content[-1]=='Found: critically injured girl in 5':
                     self._phase=Phase.FIND_NEXT_GOAL
                     self.received_messages_content=[]

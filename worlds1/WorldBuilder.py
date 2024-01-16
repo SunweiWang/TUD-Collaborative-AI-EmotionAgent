@@ -36,11 +36,14 @@ key_action_map = {
         'ArrowDown': MoveSouth.__name__,
         'ArrowLeft': MoveWest.__name__,
         'q': CarryObject.__name__,
+        'Q': CarryObject.__name__,
         'w': Drop.__name__,
+        'W': Drop.__name__,
         # 'd': RemoveObjectTogether.__name__,
         # 'a': CarryObjectTogether.__name__,
         # 's': DropObjectTogether.__name__,
         'e': RemoveObject.__name__,
+        'E': RemoveObject.__name__,
     }
 
 # Some settings
@@ -81,7 +84,7 @@ def add_agents(builder, task_type, condition, group):
         for agent_nr in range(nr_agents):
             if task_type=="official":
                 brain = OfficialAgent(slowdown=8, condition=condition) # Slowdown makes the agent a bit slower, do not change value during evaluations
-                if int(group) == 1:
+                if str(group).casefold() == "a":
                     print('Group ' + group + ' selected')
                     brain = OfficialAgentEmotion(slowdown=8, condition=condition)
                 brain2 = ObjectAddingAgent(slowdown=1, condition=condition)
@@ -91,8 +94,8 @@ def add_agents(builder, task_type, condition, group):
                 builder.add_agent((22,10), brain2, team=team_name, name="ObjectAdder", customizable_properties = ['score'], score=0, sense_capability=sense_capability_agent, is_traversable=True, visualize_shape=1, visualize_opacity=0)
 
             if task_type=="tutorial":
-                brain=TutorialAgent(slowdown=8, condition=condition)
-                if int(group) == 1:
+                brain = TutorialAgent(slowdown=8, condition=condition)
+                if str(group).casefold() == "a":
                     print('Group ' + group + ' selected')
                     brain = TutorialAgentEmotion(slowdown=8, condition=condition)
 
@@ -120,7 +123,7 @@ def create_builder(task_type, condition, group):
     # Create the world builder
     if task_type=="official":
         # Create the collection goal
-        goal = CollectionGoal(max_nr_ticks=3100)
+        goal = CollectionGoal(max_nr_ticks=3050)
         # 3000 = 300 seconds = 5 min, it used to be 5000 = 500 seconds = 8 min
         builder = WorldBuilder(shape=[25,24], tick_duration=tick_duration, run_matrx_api=True, run_matrx_visualizer=False, verbose=verbose, simulation_goal=goal, visualization_bg_clr='#9a9083')
     else:

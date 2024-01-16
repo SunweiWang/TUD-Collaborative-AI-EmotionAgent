@@ -677,7 +677,6 @@ class GridWorld:
 
                 # only do the filter observation method to be able to update the agent's state to the api
                 filtered_agent_state = agent_obj.filter_observations(state)
-
                 # save the current agent's state for the api
                 if self.__run_matrx_api:
                     api._add_state(agent_id=agent_id, state=filtered_agent_state,
@@ -686,7 +685,6 @@ class GridWorld:
 
             if not agent_obj._check_agent_busy(curr_tick=self.__current_nr_ticks) or 'human' in agent_id and self.__current_nr_ticks > 950 and self.__current_nr_ticks < 1050 and self.human_loc not in area_tiles or \
                     'human' in agent_id and self.__current_nr_ticks > 1850 and self.__current_nr_ticks < 1950 and self.human_loc not in area_tiles or 'human' in agent_id and self.__current_nr_ticks > 2750 and self.__current_nr_ticks < 2850 and self.human_loc not in area_tiles:
-
                 # Any received data from the api for this HumanAgent is send along to the get_action function
                 if agent_obj.is_human_agent:
                     usrinp = None
