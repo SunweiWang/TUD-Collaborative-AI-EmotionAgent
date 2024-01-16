@@ -84,7 +84,7 @@ def add_agents(builder, task_type, condition, group):
         for agent_nr in range(nr_agents):
             if task_type=="official":
                 brain = OfficialAgent(slowdown=8, condition=condition) # Slowdown makes the agent a bit slower, do not change value during evaluations
-                if int(group) == 1:
+                if str(group).casefold() == "a":
                     print('Group ' + group + ' selected')
                     brain = OfficialAgentEmotion(slowdown=8, condition=condition)
                 brain2 = ObjectAddingAgent(slowdown=1, condition=condition)
@@ -94,8 +94,8 @@ def add_agents(builder, task_type, condition, group):
                 builder.add_agent((22,10), brain2, team=team_name, name="ObjectAdder", customizable_properties = ['score'], score=0, sense_capability=sense_capability_agent, is_traversable=True, visualize_shape=1, visualize_opacity=0)
 
             if task_type=="tutorial":
-                brain=TutorialAgent(slowdown=8, condition=condition)
-                if int(group) == 1:
+                brain = TutorialAgent(slowdown=8, condition=condition)
+                if str(group).casefold() == "a":
                     print('Group ' + group + ' selected')
                     brain = TutorialAgentEmotion(slowdown=8, condition=condition)
 

@@ -184,7 +184,7 @@ class OfficialAgentEmotion(ArtificialBrain):
                             self._sendMessage('Moving to ' + self._foundVictimLocs[vic]['room'] + ' to pick up ' + self._goalVic +'. Please come there as well to help me carry ' + self._goalVic + ' to the drop zone.', 'RescueBot')
                         if self._condition == 'baseline' or self._condition == 'complementary':
                             self._rescue = 'alone'
-                            self._sendMessage('Moving to ' + self._foundVictimLocs[vic]['room'] + ' to pick up ' + self._goalVic +'.', 'RescueBot')                           
+                            self._sendMessage('Bot_Neutral \n Moving to ' + self._foundVictimLocs[vic]['room'] + ' to pick up ' + self._goalVic +'. \n Bot_Neutral I am excited!', 'RescueBot')
                         # Plan path to victim because the exact location is known (i.e., the agent found this victim)
                         if 'location' in self._foundVictimLocs[vic].keys():
                             self._phase = Phase.PLAN_PATH_TO_VICTIM
@@ -230,7 +230,7 @@ class OfficialAgentEmotion(ArtificialBrain):
                     self._sendMessages = []
                     self.received_messages = []
                     self.received_messages_content = []
-                    self._sendMessage('Going to re-explore the areas again because we explored them all but did not complete our mission yet. \n Bot_Worried I am worried! ', 'RescueBot')
+                    self._sendMessage('Bot_Neutral \n Going to re-explore the areas again because we explored them all but did not complete our mission yet. \n Bot_Worried I am worried! ', 'RescueBot')
                     self._phase = Phase.FIND_NEXT_GOAL
                 # If there are still areas to search, define which one to search next
                 else:
@@ -289,9 +289,9 @@ class OfficialAgentEmotion(ArtificialBrain):
                     # Explain why the agent is moving to the specific area, either because it containts the current target victim or because it is the closest unsearched area
                     if self._goalVic in self._foundVictims and str(self._door['room_name']) == self._foundVictimLocs[self._goalVic]['room'] and not self._remove:
                         # CAN BE EDITED TO BETTER FIT YOUR CONDITION E.G. "TO PICK UP TOGETHER WITH YOU"
-                        self._sendMessage('Bot_Neutral \n Moving to ' + str(self._door['room_name']) + ' to pick up ' + self._goalVic + '.', 'RescueBot')
+                        self._sendMessage('Bot_Neutral \n Moving to ' + str(self._door['room_name']) + ' to pick up ' + self._goalVic + '. \n Bot_Relieved I am relieved!', 'RescueBot')
                     if self._goalVic not in self._foundVictims and not self._remove or not self._goalVic and not self._remove :
-                        self._sendMessage('Bot_Neutral \n Moving to ' + str(self._door['room_name']) + ' because it is the closest unexplored area.', 'RescueBot')
+                        self._sendMessage('Bot_Neutral \n Moving to ' + str(self._door['room_name']) + ' because it is the closest unexplored area. \n Bot_Excited I am excited!', 'RescueBot')
                     self._currentDoor = self._door['location']
                     # Retrieve move actions to execute
                     action = self._navigator.get_move_action(self._state_tracker)
@@ -312,7 +312,7 @@ class OfficialAgentEmotion(ArtificialBrain):
                         # Communicate which obstacle is blocking the entrance (EDIT TO ACCOUNT FOR YOUR CONDITIONS)
                         if self._answered == False and not self._remove and not self._waiting:
                             if self._condition == 'baseline': 
-                                self._sendMessage('Found ' + info['obj_id'].split('_')[0] + ' blocking ' + str(self._door['room_name']) + '. \n Bot_Worried I am worried! Please decide whether to "Remove" or "Continue" searching. \
+                                self._sendMessage('Bot_Neutral \n Found ' + info['obj_id'].split('_')[0] + ' blocking ' + str(self._door['room_name']) + '. \n Bot_Worried I am concerned! Please decide whether to "Remove" or "Continue" searching. \
                                     Here is some information that might support you in deciding: \n • Explored: area ' + str(self._searchedRooms).replace('area ','') + ' \n • Found: ' + str(self._foundVictims) +  ' \
                                     \n • Rescued: ' + str(self._collectedVictims), 'RescueBot')
                             if self._condition == 'opportunisitc':
@@ -417,7 +417,7 @@ class OfficialAgentEmotion(ArtificialBrain):
                                 self._foundVictimLocs[vic] = {'location': info['location'],'room': self._door['room_name'], 'obj_id': info['obj_id']}
                                 if vic == self._goalVic:
                                     # Communicate which victim was found
-                                    self._sendMessage('Found ' + vic + ' in ' + self._door['room_name'] + ' because you told me ' + vic + ' was located here.','RescueBot')
+                                    self._sendMessage('Bot_Neutral \n Found ' + vic + ' in ' + self._door['room_name'] + ' because you told me ' + vic + ' was located here.','RescueBot')
                                     # Add the area to the list with searched areas
                                     if self._door['room_name'] not in self._searchedRooms:
                                         self._searchedRooms.append(self._door['room_name'])
@@ -437,7 +437,7 @@ class OfficialAgentEmotion(ArtificialBrain):
                                 self._foundVictimLocs[vic] = {'location': info['location'],'room': self._door['room_name'], 'obj_id': info['obj_id']}
                                 # Communicate which victim the agent found and ask the human whether to rescue the victim now or at a later stage (EDIT BELOW TO ACCOUNT FOR YOUR CONDITIONS)
                                 if self._condition == 'baseline' and self._answered == False and not self._waiting:
-                                    self._sendMessage('Found ' + vic + ' in ' + self._door['room_name'] + '. \n Bot_Worried I am nervous! Please decide whether to "Rescue" or "Continue" searching. \
+                                    self._sendMessage('Bot_Neutral \n Found ' + vic + ' in ' + self._door['room_name'] + '. \n Bot_Worried I am concerned! Please decide whether to "Rescue" or "Continue" searching. \
                                         Here is some information that might support you in deciding: \n • Explored: area ' + str(self._searchedRooms).replace('area ','') + ' \n • Found: ' + str(self._foundVictims) +  ' \
                                         \n • Rescued: ' + str(self._collectedVictims), 'RescueBot')
                                     self._waiting = True  
@@ -452,8 +452,8 @@ class OfficialAgentEmotion(ArtificialBrain):
 
                 # Communicate that the agent did not find the target victim in the area while the human previously communicated the victim was located here
                 if self._goalVic in self._foundVictims and self._goalVic not in self._roomVics and self._foundVictimLocs[self._goalVic]['room'] == self._door['room_name']:
-                    self._sendMessage(self._goalVic + ' not present in ' + str(self._door['room_name']) + ' because I explored the whole area without finding ' + self._goalVic + '.','RescueBot')
-                    # Remove the victim location from memory
+                    self._sendMessage(self._goalVic + ' not present in ' + str(self._door['room_name']) + ' because I explored the whole area without finding ' + self._goalVic + '. \n Bot_Scared I am scared!','RescueBot')
+                    # Remove the victim location from memoryScared
                     self._foundVictimLocs.pop(self._goalVic, None)
                     self._foundVictims.remove(self._goalVic)
                     self._roomVics = []
@@ -466,7 +466,7 @@ class OfficialAgentEmotion(ArtificialBrain):
                 # Make a plan to rescue a found critically injured victim if the human decides so (EDIT BELOW TO ACCOUNT FOR YOUR CONDITIONS)
                 if self.received_messages_content and self.received_messages_content[-1] == 'Rescue' \
                 or self.received_messages_content and self.received_messages_content[-1] == 'Rescue alone':
-                    self._sendMessage('Picking up ' + self._recentVic + ' in ' + self._door['room_name'] + ', \n Bot_Neutral I am relieved!','RescueBot')
+                    self._sendMessage('Bot_Neutral \n Picking up ' + self._recentVic + ' in ' + self._door['room_name'] + ', \n Bot_Relieved I am relieved!','RescueBot')
                     self._rescue = 'alone'
                     self._answered = True
                     self._waiting = False
@@ -573,7 +573,7 @@ class OfficialAgentEmotion(ArtificialBrain):
             if Phase.FOLLOW_PATH_TO_DROPPOINT == self._phase:
                 # Communicate that the agent is transporting a mildly injured victim alone to the drop zone
                 if 'mild' in self._goalVic and self._rescue=='alone' or self._condition == 'baseline':
-                    self._sendMessage('Transporting ' + self._goalVic + ' to the drop zone. \n Bot_Neutral I am excited!', 'RescueBot')
+                    self._sendMessage('Bot_Neutral \n Transporting ' + self._goalVic + ' to the drop zone. \n Bot_Excited I am excited!', 'RescueBot')
                 self._state_tracker.update(state)
                 # Follow the path to the drop zone
                 action = self._navigator.get_move_action(self._state_tracker)
@@ -585,7 +585,7 @@ class OfficialAgentEmotion(ArtificialBrain):
             if Phase.DROP_VICTIM == self._phase:
                 # Communicate that the agent delivered a mildly injured victim alone to the drop zone
                 if 'mild' in self._goalVic and self._rescue=='alone' or self._condition == 'baseline':
-                    self._sendMessage('Delivered ' + self._goalVic + ' at the drop zone. \n Bot_Neutral I am happy!', 'RescueBot')
+                    self._sendMessage('Bot_Neutral \n Delivered ' + self._goalVic + ' at the drop zone. \n Bot_Happy I am happy!', 'RescueBot')
                 # Identify the next target victim to rescue
                 self._phase = Phase.FIND_NEXT_GOAL
                 self._rescue = None

@@ -13,7 +13,7 @@ if __name__ == "__main__":
     fld = os.getcwd()
     print("\nEnter one of the task types 'tutorial' or 'official':")
     choice1=input()
-    print("\nEnter the assigned group number '1' or '2':")
+    print("\nEnter the assigned group number 'A' or 'B':")
     choiceGroup=input()
     if choice1=='tutorial':
         builder = create_builder(task_type='tutorial', condition='tutorial', group=choiceGroup)
