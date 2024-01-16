@@ -19,5 +19,25 @@ class ActionLogger(GridWorldLogger):
             if 'objectadder' not in agent_id:
                 log_data[agent_id + '_action'] = agent_body.current_action
                 log_data[agent_id + '_location'] = agent_body.location
+
+        # Log the number of messages sent by rescuebot and agend last tick
+        log_data["human_sent_messages_nr"]=0
+        log_data["rescuebot_sent_messages_nr"]=0
+        tick_to_check=grid_world.current_nr_ticks - 1
+        if tick_to_check in grid_world.message_manager.preprocessed_messages.keys():
+            # loop through all messages of this tick
+            for message in grid_world.message_manager.preprocessed_messages[tick_to_check]:
+
+                # Log the message content for the sender and receiver
+                message_content = str(message.content)
+
+                if not message_content.startswith('Current tick') and not message_content.startswith('Our score'):
+                    print(message.content, message.from_id, message.to_id)
+
+                if message.from_id == 'human' and message.to_id == 'rescuebot':
+                    log_data["human_sent_messages_nr"]+=1
+
+                if message.from_id == 'RescueBot' and message.to_id == 'human' and not message_content.startswith('Current tick') and not message_content.startswith('Our score'):
+                    log_data["rescuebot_sent_messages_nr"]+=1
                 
         return log_data
