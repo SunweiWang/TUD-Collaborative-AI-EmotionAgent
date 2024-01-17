@@ -84,7 +84,7 @@ function ss_populate_agent_menu(state) {
     var list_item = document.createElement('a');
     list_item.classList.add('dropdown-item');
     list_item.append(god_preview);
-    list_item.appendChild( document.createTextNode('God'));
+    list_item.appendChild( document.createTextNode('Mod'));
     list_item.href = '/god'
     list_item.setAttribute('target', '_blank'); // open in a new tab
 

@@ -7,6 +7,7 @@ class ActionLogger(GridWorldLogger):
     '''
     def __init__(self, save_path="", file_name_prefix="", file_extension=".csv", delimiter=";"):
         super().__init__(save_path=save_path, file_name=file_name_prefix, file_extension=file_extension, delimiter=delimiter, log_strategy=1)
+        self.last_rescuebot_msg_tick=None
 
     def log(self, grid_world, agent_data):
         # Create a dictionary with the log data
@@ -39,5 +40,27 @@ class ActionLogger(GridWorldLogger):
 
                 if message.from_id == 'RescueBot' and message.to_id == 'human' and not message_content.startswith('Current tick') and not message_content.startswith('Our score'):
                     log_data["rescuebot_sent_messages_nr"]+=1
-                
+
+            # Update and calculate the tick difference
+            if log_data["rescuebot_sent_messages_nr"] >= 1:
+                self.last_rescuebot_msg_tick=grid_world.current_nr_ticks
+
+            # Calculate tick difference if human_sent_messages_nr >= 1
+            if log_data["human_sent_messages_nr"] >= 1 and self.last_rescuebot_msg_tick is not None:
+                tick_difference=grid_world.current_nr_ticks - self.last_rescuebot_msg_tick
+                log_data["tick_diff_since_last_rescuebot_msg"]=tick_difference
+            else:
+                log_data["tick_diff_since_last_rescuebot_msg"]=None# Update and calculate the tick difference
+
+        # Update and calculate the tick difference
+        if log_data["rescuebot_sent_messages_nr"] >= 1:
+            self.last_rescuebot_msg_tick = grid_world.current_nr_ticks
+
+        # Calculate tick difference if human_sent_messages_nr >= 1
+        if log_data["human_sent_messages_nr"] >= 1 and self.last_rescuebot_msg_tick is not None:
+            tick_difference = grid_world.current_nr_ticks - self.last_rescuebot_msg_tick
+            log_data["tick_diff_since_last_rescuebot_msg"] = tick_difference
+        else:
+            log_data["tick_diff_since_last_rescuebot_msg"] = None
+
         return log_data
